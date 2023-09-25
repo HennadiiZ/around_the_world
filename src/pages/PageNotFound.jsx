@@ -1,5 +1,11 @@
 import React from 'react';
+import NavPage from '../components/NavPage';
 
 export default function PageNotFound() {
-  return <div>PageNotFound</div>;
+  return (
+    <div>
+      <NavPage />
+      PageNotFound
+    </div>
+  );
 }
