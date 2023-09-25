@@ -1,9 +1,6 @@
-// import React from 'react';
-// import AppNav from '../../components/AppNav/AppNav';
-// import Sidebar from '../../components/Sidebar';
+import styles from './AppLayout.module.css';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Map from '../../components/Map/Map';
-import styles from './AppLayout.module.css';
 
 export default function AppLayout() {
   return (

@@ -1,6 +1,3 @@
-// import React from 'react';
-//import styles from './Sidebar.modules.css';
-
 import styles from './Sidebar.module.css';
 import Logo from '../Logo/Logo';
 import AppNav from '../AppNav/AppNav';
@@ -18,10 +15,5 @@ export default function Sidebar() {
         </p>
       </footer>
     </div>
-
-    // <>
-    //   <Logo />
-    //   <AppNav />
-    // </>
   );
 }
