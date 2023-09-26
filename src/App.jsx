@@ -46,3 +46,4 @@ export default App;
 
 // npm i react-router-dom@6
 // npm i json-server
+// npm run server
