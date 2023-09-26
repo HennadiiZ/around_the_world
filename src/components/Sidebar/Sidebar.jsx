@@ -8,11 +8,7 @@ export default function Sidebar() {
     <div className={styles.sidebar}>
       <Logo />
       <AppNav />
-
-      <p>this is Sidebar</p>
-
       <Outlet />
-
       <footer className={styles.footer}>
         <p className={styles.copyright}>
           &copy; Copyright {new Date().getFullYear()} by Around The World

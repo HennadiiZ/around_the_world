@@ -1,9 +1,11 @@
 .cityItem,
 .cityItem:link,
 .cityItem:visited {
+  margin-top: 10px; /* mine */
   display: flex;
   gap: 1.6rem;
   align-items: center;
+  list-style: none;
 
   background-color: var(--color-dark--2);
   border-radius: 7px;
@@ -46,6 +48,10 @@
   font-weight: 400;
   cursor: pointer;
   transition: all 0.2s;
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
 .deleteBtn:hover {
