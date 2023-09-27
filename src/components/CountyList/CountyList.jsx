@@ -15,6 +15,7 @@ export default function CountryList({ cities, isLoading }) {
     );
   }
 
+  // 1st solution
   const countries = cities.reduce((arr, city) => {
     if (!arr.map((el) => el.country).includes(city.country)) {
       return [...arr, { country: city.country, emoji: city.emoji }];
@@ -23,10 +24,19 @@ export default function CountryList({ cities, isLoading }) {
     }
   }, []);
 
+  // 2nd solution
+  //   const countriesSet = new Set();
+  //   cities.forEach((city) => {
+  //     countriesSet.add(city.country);
+  //   });
+  //   const countries = Array.from(countriesSet); // ['Portugal', 'Spain', 'Germany']
+
+  console.log('countries', countries);
+
   return (
     <ul className={styles.countryList}>
-      {countries.map((country) => (
-        <CountryItem key={country} country={country} />
+      {countries.map((country, i) => (
+        <CountryItem key={i} country={country} />
       ))}
     </ul>
     // <ul className={styles.countryList}>
