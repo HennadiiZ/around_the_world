@@ -12,7 +12,7 @@ const formatDate = (date) =>
 export default function CityItem({ city }) {
   const { cityName, emoji, date, notes, id } = city;
 
-  console.log('city', city, id);
+  //   console.log('city', city, id);
   return (
     <>
       {/* <Link to={`${id}`}>
