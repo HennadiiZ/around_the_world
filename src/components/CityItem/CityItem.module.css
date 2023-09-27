@@ -17,6 +17,10 @@
   text-decoration: none;
 }
 
+li {
+  list-style: none;
+}
+
 .cityItem--active {
   border: 2px solid var(--color-brand--2);
   border-left: 5px solid var(--color-brand--2);

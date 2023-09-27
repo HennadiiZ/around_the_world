@@ -15,14 +15,22 @@ export default function CityItem({ city }) {
   console.log('city', city, id);
   return (
     <>
-      <Link to={`${id}`}>
+      {/* <Link to={`${id}`}>
         <li className={styles.cityItem}>
           <span className={styles.emoji}>{emoji}</span>
           <h3 className={styles.name}> {cityName}</h3>
           <time className={styles.date}> {formatDate(date)}</time>
           <button className={styles.deleteBtn}>&times;</button>
         </li>
-      </Link>
+      </Link> */}
+      <li>
+        <Link to={`${id}`} className={styles.cityItem}>
+          <span className={styles.emoji}>{emoji}</span>
+          <h3 className={styles.name}> {cityName}</h3>
+          <time className={styles.date}> {formatDate(date)}</time>
+          <button className={styles.deleteBtn}>&times;</button>
+        </Link>
+      </li>
     </>
   );
   //   return (
