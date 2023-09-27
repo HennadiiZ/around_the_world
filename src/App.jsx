@@ -53,6 +53,8 @@ function App() {
             path='cities'
             element={<CityList cities={cities} isLoading={isLoading} />}
           />
+          <Route path='cities/:id' />
+
           <Route
             path='countries'
             element={<CountryList cities={cities} isLoading={isLoading} />}
