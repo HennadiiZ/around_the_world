@@ -67,6 +67,7 @@ function App() {
 
 export default App;
 
+//2
 // npm run dev
 // npm install eslint vite-plugin-eslint eslint-config-react-app --save-dev
 // new file .eslintrc.json
