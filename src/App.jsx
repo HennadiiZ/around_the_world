@@ -19,9 +19,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // fetch('http://localhost:9000/cities')
-    //   .then((res) => res.json())
-    //   .then((res) => console.log(res));
     async function fetchCities() {
       try {
         setIsLoading(true);
@@ -45,7 +42,6 @@ function App() {
         <Route path='product' element={<Product />} />
         <Route path='pricing' element={<Pricing />} />
         <Route path='login' element={<Login />} />
-        {/* <Route path='app' element={<AppLayout />} /> */}
         <Route path='app' element={<AppLayout />}>
           <Route
             index
@@ -55,9 +51,7 @@ function App() {
             path='cities'
             element={<CityList cities={cities} isLoading={isLoading} />}
           />
-          {/*  */}
           <Route path='cities/:id' element={<City />} />
-          {/*  */}
           <Route
             path='countries'
             element={<CountryList cities={cities} isLoading={isLoading} />}
