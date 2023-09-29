@@ -79,3 +79,11 @@ export default App;
 // npm i react-router-dom@6
 // npm i json-server
 // npm run server
+
+// <Link
+// to={`${id}?lat=${position.lat}&lng=${position.lng}`}
+// >
+
+// By adding & between position.lat and lng,
+// you're properly separating the lat and lng parameters,
+// ensuring they are formatted correctly in the URL.
