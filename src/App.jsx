@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import CitiesProvider from './contexts/CitiesContext';
 import './App.css';
 import Product from './pages/Product';
 import Pricing from './pages/Pricing';
@@ -12,56 +13,56 @@ import CountryList from './components/CountyList/CountyList';
 import City from './components/City/City';
 import Form from './components/Form/Form';
 
-const BASE_URL = 'http://localhost:9000';
+// const BASE_URL = 'http://localhost:9000';
 
 function App() {
-  const [cities, setCities] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [cities, setCities] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    async function fetchCities() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(`${BASE_URL}/cities`);
-        const data = await res.json();
-        setCities(data);
-      } catch {
-        console.log('error !!!');
-      } finally {
-        setIsLoading(false);
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchCities() {
+  //     try {
+  //       setIsLoading(true);
+  //       const res = await fetch(`${BASE_URL}/cities`);
+  //       const data = await res.json();
+  //       setCities(data);
+  //     } catch {
+  //       console.log('error !!!');
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   }
 
-    fetchCities();
-  }, []);
+  //   fetchCities();
+  // }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='product' element={<Product />} />
-        <Route path='pricing' element={<Pricing />} />
-        <Route path='login' element={<Login />} />
-        <Route path='app' element={<AppLayout />}>
-          {/* <Route
-            index
-            element={<CityList cities={cities} isLoading={isLoading} />}
-          /> */}
-          <Route index element={<Navigate replace to='cities' />} />
-          <Route
+    <CitiesProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='product' element={<Product />} />
+          <Route path='pricing' element={<Pricing />} />
+          <Route path='login' element={<Login />} />
+          <Route path='app' element={<AppLayout />}>
+            <Route index element={<Navigate replace to='cities' />} />
+            {/* <Route
             path='cities'
             element={<CityList cities={cities} isLoading={isLoading} />}
-          />
-          <Route path='cities/:id' element={<City />} />
-          <Route
+          /> */}
+            <Route path='cities' element={<CityList />} />
+            <Route path='cities/:id' element={<City />} />
+            {/* <Route
             path='countries'
             element={<CountryList cities={cities} isLoading={isLoading} />}
-          />
-          <Route path='form' element={<Form />} />
-        </Route>
-        <Route path='*' element={<PageNotFound />} />
-      </Routes>
-    </BrowserRouter>
+          /> */}
+            <Route path='countries' element={<CountryList />} />
+            <Route path='form' element={<Form />} />
+          </Route>
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </CitiesProvider>
   );
 }
 
