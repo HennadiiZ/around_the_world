@@ -3,7 +3,7 @@ import { BASE_URL } from '../constants/constants';
 
 const CitiesContext = createContext();
 
-export default function CitiesProvider({ children }) {
+function CitiesProvider({ children }) {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,3 +35,5 @@ export default function CitiesProvider({ children }) {
     </CitiesContext.Provider>
   );
 }
+
+export { CitiesProvider };

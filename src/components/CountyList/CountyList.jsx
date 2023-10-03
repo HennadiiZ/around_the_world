@@ -1,10 +1,14 @@
 // import React from 'react';
+import { useContext } from 'react';
+import { CitiesProvider } from '../../contexts/CitiesContext';
 import styles from './CountryList.module.css';
 import Spinner from '../Spinner/Spinner';
 import CountryItem from '../CountryItem/CountryItem';
 import Message from '../Message/Message';
 
-export default function CountryList({ cities, isLoading }) {
+// export default function CountryList({ cities, isLoading }) {
+export default function CountryList() {
+  const { cities, isLoading } = useContext(CitiesProvider);
   if (isLoading) {
     return <Spinner />;
   }
@@ -35,7 +39,7 @@ export default function CountryList({ cities, isLoading }) {
 
   return (
     <ul className={styles.countryList}>
-      {countries.map((country, i) => (
+      {countries.map((country) => (
         <CountryItem key={country.country} country={country} />
       ))}
     </ul>
