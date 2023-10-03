@@ -36,4 +36,5 @@ function CitiesProvider({ children }) {
   );
 }
 
-export { CitiesProvider };
+export { CitiesProvider, CitiesContext };
+// export { PostProvider, PostContext };
