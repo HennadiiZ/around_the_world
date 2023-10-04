@@ -11,6 +11,17 @@ export default function CityList() {
   const { cities, isLoading } = useContext(CitiesContext);
   // const { cities, isLoading } = useCities();
 
+  const s_styles = {
+    width: '100%',
+    height: '65vh',
+    listStyle: 'none',
+    overflowY: 'scroll',
+    overflowX: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.4rem',
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -22,7 +33,8 @@ export default function CityList() {
   }
 
   return (
-    <ul className={styles.CityList}>
+    // <ul className={styles.CityList}>
+    <ul className={styles} style={s_styles}>
       {cities.map((city) => (
         <CityItem key={city.id} city={city} />
       ))}
