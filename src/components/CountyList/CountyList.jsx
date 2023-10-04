@@ -7,7 +7,6 @@ import Spinner from '../Spinner/Spinner';
 import CountryItem from '../CountryItem/CountryItem';
 import Message from '../Message/Message';
 
-// export default function CountryList({ cities, isLoading }) {
 export default function CountryList() {
   const { cities, isLoading } = useContext(CitiesContext);
   // const { cities, isLoading } = useCities();
@@ -46,10 +45,5 @@ export default function CountryList() {
         <CountryItem key={country.country} country={country} />
       ))}
     </ul>
-    // <ul className={styles.countryList}>
-    //   {cities.map((city) => (
-    //     <CountryItem key={city.id} country={city} />
-    //   ))}
-    // </ul>
   );
 }
