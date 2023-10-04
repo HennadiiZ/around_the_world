@@ -1,6 +1,7 @@
 // import React from 'react';
 import { useContext } from 'react';
-import { CitiesProvider, CitiesContext } from '../../contexts/CitiesContext';
+// import { CitiesContext, useCities } from '../../contexts/CitiesContext';
+import { CitiesContext } from '../../contexts/CitiesContext';
 import styles from './CityList.module.css';
 import Spinner from '../Spinner/Spinner';
 import CityItem from '../CityItem/CityItem';
@@ -9,6 +10,7 @@ import Message from '../Message/Message';
 // export default function CityList({ cities, isLoading }) {
 export default function CityList() {
   const { cities, isLoading } = useContext(CitiesContext);
+  // const { cities, isLoading } = useCities();
 
   if (isLoading) {
     return <Spinner />;
