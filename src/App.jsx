@@ -49,6 +49,7 @@ export default App;
 // npm i react-router-dom@6
 // npm i json-server
 // npm run server
+// npm i react-leaflet leaflet
 
 // <Link
 // to={`${id}?lat=${position.lat}&lng=${position.lng}`}
