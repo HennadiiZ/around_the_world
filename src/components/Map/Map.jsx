@@ -25,7 +25,7 @@ export default function Map() {
     //   </button>
     // </div>
 
-    <div className={styles.mapContainer} onClick={() => navigate('form')}>
+    <div className={styles.mapContainer}>
       <MapContainer
         className={styles.map}
         center={mapPosition}
