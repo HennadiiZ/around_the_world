@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { CitiesContext } from '../../contexts/CitiesContext';
+import Button from '../Button/Button';
+import Spinner from '../Spinner/Spinner';
 import styles from './City.module.css';
-import { BASE_URL } from '../../constants/constants';
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat('en', {
@@ -12,30 +14,21 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function City() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [city, setCity] = useState([]);
   const lat = searchParams.get('lat');
   const lng = searchParams.get('lng');
-
-  const { cityName, emoji, date, notes } = city;
+  const { getCity, currentCity, isLoading } = useContext(CitiesContext);
+  const { cityName, emoji, date, notes } = currentCity;
 
   useEffect(() => {
-    async function fetchCity() {
-      try {
-        // setIsLoading(true);
-        const res = await fetch(`${BASE_URL}/cities/${id}`);
-        const data = await res.json();
-        setCity(data);
-      } catch {
-        console.log('error !!!');
-      } finally {
-        // setIsLoading(false);
-      }
-    }
+    getCity(id);
+  }, [id]);
 
-    fetchCity();
-  }, []);
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className={styles.city}>
@@ -71,7 +64,18 @@ function City() {
         </a>
       </div>
 
-      <div>{/* <ButtonBack /> */}</div>
+      <div>
+        <Button
+          type='back'
+          onClick={(e) => {
+            e.preventDefault();
+            navigate(-1);
+          }}
+        >
+          Back
+        </Button>
+        {/* <ButtonBack /> */}
+      </div>
     </div>
   );
 }
