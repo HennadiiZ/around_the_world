@@ -1,7 +1,7 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useUrlPosition } from '../../hooks/useUrlPosition';
 import styles from './Form.module.css';
 import Button from '../Button/Button';
@@ -18,6 +18,10 @@ const BASE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
 
 function Form() {
   const [lat, lng] = useUrlPosition();
+  // const [searchParams, setSearchParams] = useSearchParams(); //--------
+  // const lat = searchParams.get('lat'); //--------
+  // const lng = searchParams.get('lng'); //--------
+
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [cityName, setCityName] = useState('');
   // const [country, setCountry] = useState("");
