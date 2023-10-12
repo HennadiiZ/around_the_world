@@ -1,4 +1,5 @@
-import { useSearchParams, useNavigate } from 'react-router-dom';
+// import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './Map.module.css';
 import {
   MapContainer,
@@ -11,6 +12,8 @@ import {
 import { useContext, useEffect, useState } from 'react';
 import { CitiesContext } from '../../contexts/CitiesContext';
 import { useGeolocation } from '../../hooks/useGeolocation';
+import { useUrlPosition } from '../../hooks/useUrlPosition';
+
 import Button from '../Button/Button';
 
 export default function Map() {
@@ -19,15 +22,18 @@ export default function Map() {
   const { cities } = useContext(CitiesContext);
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
-    error,
+    // error,
     getPosition,
   } = useGeolocation();
-  const lat = searchParams.get('lat');
-  const lng = searchParams.get('lng');
+
+  // const [searchParams, setSearchParams] = useSearchParams(); //--------
+  // const lat = searchParams.get('lat'); //--------
+  // const lng = searchParams.get('lng'); //--------
+
+  const [lat, lng] = useUrlPosition();
 
   useEffect(() => {
     if (lat && lng) {
@@ -41,8 +47,8 @@ export default function Map() {
     }
   }, [geolocationPosition]);
 
-  // console.log('lat', lat);
-  // console.log('lng', lng);
+  console.log('lat', lat);
+  console.log('lng', lng);
 
   return (
     <div className={styles.mapContainer}>
