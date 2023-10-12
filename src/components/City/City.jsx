@@ -34,8 +34,7 @@ function City() {
     <div className={styles.city}>
       <div className={styles.row}>
         <h6>City name</h6>
-        Map{lat}
-        {lng}
+        lat:{lat}, lng: {lng}
         <h3>
           <span>{emoji}</span> {cityName}
         </h3>
