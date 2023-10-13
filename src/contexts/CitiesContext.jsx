@@ -50,10 +50,22 @@ function CitiesProvider({ children }) {
         },
       });
       const data = await res.json();
-
       // setCities((cities) => [...cities, data]);
+      // console.log('data:', data); // data: {id: 98443198}
+    } catch {
+      console.log('error !!!');
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
-      console.log('data:', data); // data: {id: 98443198}
+  async function deleteCity(id) {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities/${id}`, {
+        method: 'DELETE',
+      });
+      setCities((prevCities) => prevCities.filter((city) => city.id !== id));
     } catch {
       console.log('error !!!');
     } finally {
@@ -69,6 +81,7 @@ function CitiesProvider({ children }) {
         currentCity,
         getCity,
         createCity,
+        deleteCity,
       }}
     >
       {children}
