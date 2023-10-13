@@ -24,7 +24,7 @@ function Form() {
 
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [cityName, setCityName] = useState('');
-  // const [country, setCountry] = useState("");
+  const [country, setCountry] = useState('');
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState('');
   const navigate = useNavigate();
@@ -38,6 +38,8 @@ function Form() {
         const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
         const data = await res.json();
         console.log('data', data);
+        setCityName(data.city || data.locality || '');
+        setCountry(data.countryName || '');
       } catch (err) {
         console.log('err', err);
       } finally {
@@ -45,7 +47,7 @@ function Form() {
       }
     }
     fetchCityData();
-  }, []);
+  }, [lat, lng]);
 
   return (
     <form className={styles.form}>

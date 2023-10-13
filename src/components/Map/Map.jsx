@@ -108,7 +108,7 @@ function DetectClick() {
       console.log(e);
       // console.log(e.latlng.lat);
       // navigate('form');
-      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lat}`);
+      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
 }
