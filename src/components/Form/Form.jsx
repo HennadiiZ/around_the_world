@@ -16,6 +16,21 @@ export function convertToEmoji(countryCode) {
   return String.fromCodePoint(...codePoints);
 }
 
+function formatDateString(dateString) {
+  const date = new Date(dateString);
+  const options = {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    // hour: '2-digit',
+    // minute: '2-digit',
+    // second: '2-digit',
+    // timeZoneName: 'short',
+  };
+  return date.toLocaleString('en-US', options);
+}
+
 const BASE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
 
 function Form() {
@@ -65,6 +80,10 @@ function Form() {
     fetchCityData();
   }, [lat, lng]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
   if (isLoadingGeocoding) {
     return <Spinner />;
   }
@@ -78,7 +97,7 @@ function Form() {
   }
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.row}>
         <label htmlFor='cityName'>City name</label>
         <input
@@ -91,10 +110,15 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor='date'>When did you go to {cityName}?</label>
-        <input
+        {/* <input
           id='date'
           onChange={(e) => setDate(e.target.value)}
           value={date}
+        /> */}
+        <input
+          id='date'
+          onChange={(e) => setDate(e.target.value)}
+          value={formatDateString(date)}
         />
       </div>
 
