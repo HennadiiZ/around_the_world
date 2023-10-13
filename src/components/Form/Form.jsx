@@ -53,7 +53,7 @@ function Form() {
   const navigate = useNavigate();
   const { createCity } = useContext(CitiesContext);
 
-  console.log(lat, lng);
+  // console.log(lat, lng);
 
   useEffect(() => {
     if (!lat && !lng) {
@@ -66,7 +66,7 @@ function Form() {
         setGeocodingErr('');
         const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
         const data = await res.json();
-        console.log('data', data);
+        // console.log('data', data);
 
         if (!data.countryCode) {
           throw new Error("That doesn't seem to be a city.");
@@ -102,7 +102,7 @@ function Form() {
     };
 
     createCity(newCity);
-    // console.log(newCity);
+    console.log('newCity:', newCity);
   }
 
   if (isLoadingGeocoding) {

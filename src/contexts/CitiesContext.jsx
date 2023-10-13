@@ -51,7 +51,6 @@ function CitiesProvider({ children }) {
       });
       const data = await res.json();
       // setCurrentCity(data);
-      // console.log(data);
       console.log('data:', data);
     } catch {
       console.log('error !!!');

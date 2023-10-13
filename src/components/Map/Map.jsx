@@ -47,8 +47,8 @@ export default function Map() {
     }
   }, [geolocationPosition]);
 
-  console.log('lat', lat);
-  console.log('lng', lng);
+  // console.log('lat', lat);
+  // console.log('lng', lng);
 
   return (
     <div className={styles.mapContainer}>
@@ -105,7 +105,7 @@ function DetectClick() {
 
   useMapEvents({
     click: (e) => {
-      console.log(e);
+      // console.log(e);
       // console.log(e.latlng.lat);
       // navigate('form');
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
