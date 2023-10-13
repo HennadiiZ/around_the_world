@@ -1,12 +1,16 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useUrlPosition } from '../../hooks/useUrlPosition';
 import styles from './Form.module.css';
 import Button from '../Button/Button';
 import Message from '../Message/Message';
 import Spinner from '../Spinner/Spinner';
+// import ReactDatePicker from 'react-datepicker';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { CitiesContext } from '../../contexts/CitiesContext';
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -47,6 +51,7 @@ function Form() {
   const [emoji, setEmoji] = useState('');
   const [geocodingErr, setGeocodingErr] = useState('');
   const navigate = useNavigate();
+  const { createCity } = useContext(CitiesContext);
 
   console.log(lat, lng);
 
@@ -82,6 +87,22 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!cityName || !date) {
+      return;
+    }
+
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date,
+      notes,
+      position: { lat, lng },
+    };
+
+    createCity(newCity);
+    // console.log(newCity);
   }
 
   if (isLoadingGeocoding) {
@@ -115,10 +136,17 @@ function Form() {
           onChange={(e) => setDate(e.target.value)}
           value={date}
         /> */}
-        <input
+        {/* <input
           id='date'
           onChange={(e) => setDate(e.target.value)}
           value={formatDateString(date)}
+        /> */}
+        {/* <ReactDatePicker /> */}
+        <DatePicker
+          id='date'
+          selected={date}
+          onChange={(newDate) => setDate(newDate)}
+          dateFormat='dd/MM/yyyy'
         />
       </div>
 
@@ -149,3 +177,5 @@ function Form() {
 }
 
 export default Form;
+
+// npm i react-datepicker
