@@ -44,23 +44,16 @@ function CitiesProvider({ children }) {
       setIsLoading(true);
       const res = await fetch(`${BASE_URL}/cities`, {
         method: 'POST',
-        body: JSON.stringify(newCity),
+        body: JSON.stringify('newCity'),
         headers: {
           'Context-Type': 'application/json',
         },
       });
       const data = await res.json();
-      // console.log('data:', data); // data: {id: 98443198}
-      // const completeCity = { ...newCity, id: data.id };
-      // console.log('completeCity:', completeCity);
 
-      //---
-      // const completeCityRes = await fetch(`${BASE_URL}/cities/${data.id}`);
-      // const completeCity = await completeCityRes.json();
+      // setCities((cities) => [...cities, data]);
 
-      // console.log('Complete city:', completeCity);
-      // console.log('data.id:', data.id);
-      //---
+      console.log('data:', data); // data: {id: 98443198}
     } catch {
       console.log('error !!!');
     } finally {
