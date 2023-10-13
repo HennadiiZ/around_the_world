@@ -50,8 +50,17 @@ function CitiesProvider({ children }) {
         },
       });
       const data = await res.json();
-      // setCurrentCity(data);
-      console.log('data:', data);
+      // console.log('data:', data); // data: {id: 98443198}
+      // const completeCity = { ...newCity, id: data.id };
+      // console.log('completeCity:', completeCity);
+
+      //---
+      // const completeCityRes = await fetch(`${BASE_URL}/cities/${data.id}`);
+      // const completeCity = await completeCityRes.json();
+
+      // console.log('Complete city:', completeCity);
+      // console.log('data.id:', data.id);
+      //---
     } catch {
       console.log('error !!!');
     } finally {

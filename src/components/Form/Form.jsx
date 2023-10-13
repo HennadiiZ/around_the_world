@@ -102,7 +102,7 @@ function Form() {
     };
 
     createCity(newCity);
-    console.log('newCity:', newCity);
+    console.log('newCity:', newCity); // newCity: {cityName: 'Carrazeda de Ansiaes', country: 'Portugal', emoji: '🇵🇹', date: Fri Oct 13 2023 12:58:43 GMT-0600 (Mountain Daylight Time), notes: '', …}
   }
 
   if (isLoadingGeocoding) {
