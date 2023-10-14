@@ -1,5 +1,5 @@
-import { imageOverlay } from 'leaflet';
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -27,12 +27,21 @@ const FAKE_USER = {
 };
 
 function AuthProvider({ children }) {
+  // const [state, dispatch]
   const [{ user, isAuthenticated }, dispatch] = useReducer(
     reducer,
     initialState
   );
+  //   const navigate = useNavigate();
+
+  //   useEffect(() => {
+  //     if (isAuthenticated === true) {
+  //       navigate('/app');
+  //     }
+  //   }, [isAuthenticated]);
 
   function login(email, password) {
+    console.log('check', email, password);
     if (email === FAKE_USER.email && password === FAKE_USER.password) {
       dispatch({ type: 'login', payload: FAKE_USER });
     }
@@ -57,6 +66,6 @@ function useAuth() {
   return context;
 }
 
-// export { AuthProvider, AuthContext };
-export { AuthProvider, useAuth };
+export { AuthProvider, AuthContext };
+// export { AuthProvider, useAuth };
 // exemple - export { CitiesProvider, CitiesContext };

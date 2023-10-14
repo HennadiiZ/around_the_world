@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CitiesProvider } from './contexts/CitiesContext';
+import { AuthContext } from './contexts/FakeAuthContext';
+import { useContext } from 'react';
 import './App.css';
 import Product from './pages/Product';
 import Pricing from './pages/Pricing';
@@ -11,8 +13,12 @@ import CityList from './components/CityList/CityList';
 import CountryList from './components/CountyList/CountyList';
 import City from './components/City/City';
 import Form from './components/Form/Form';
+import User from './components/User';
 
 function App() {
+  const { isAuthenticated } = useContext(AuthContext);
+  console.log(isAuthenticated);
+
   return (
     <CitiesProvider>
       <BrowserRouter>
@@ -20,6 +26,7 @@ function App() {
           <Route path='/' element={<Homepage />} />
           <Route path='product' element={<Product />} />
           <Route path='pricing' element={<Pricing />} />
+          {/* {!isAuthenticated && <Route path='login' element={<Login />} />} */}
           <Route path='login' element={<Login />} />
           <Route path='app' element={<AppLayout />}>
             <Route index element={<Navigate replace to='cities' />} />

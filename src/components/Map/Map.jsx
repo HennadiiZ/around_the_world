@@ -15,6 +15,7 @@ import { useGeolocation } from '../../hooks/useGeolocation';
 import { useUrlPosition } from '../../hooks/useUrlPosition';
 
 import Button from '../Button/Button';
+import User from '../User';
 
 export default function Map() {
   // const navigate = useNavigate();
@@ -52,6 +53,7 @@ export default function Map() {
 
   return (
     <div className={styles.mapContainer}>
+      {/* <User /> */}
       {!geolocationPosition && (
         <Button type='position' onClick={getPosition}>
           {isLoadingPosition ? 'Loading...' : 'Use your position'}
