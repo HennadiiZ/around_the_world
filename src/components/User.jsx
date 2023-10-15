@@ -12,6 +12,7 @@ const FAKE_USER = {
 
 function User() {
   // const user = FAKE_USER;
+  const avatar = 'https://i.pravatar.cc/100?u=zz';
   // const { createCity, isLoading } = useContext(CitiesContext);
   const { user, isAuthenticated, login, logout } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ function User() {
 
   return (
     <div className={styles?.user}>
-      {/* <img src={user?.avatar} alt={user.name} /> */}
+      <img src={avatar} alt={user?.name} />
       <span>Welcome, {user?.name}</span>
       <button onClick={handleClick}>Logout</button>
     </div>
@@ -43,6 +44,6 @@ CHALLENGE
 1) Add `AuthProvider` to `App.jsx` +
 2) In the `Login.jsx` page, call `login()` from context +
 3) Inside an effect, check whether `isAuthenticated === true`. If so, programatically navigate to `/app` +
-4) In `User.js`, read and display logged in user from context (`user` object). Then include this component in `AppLayout.js`
-5) Handle logout button by calling `logout()` and navigating back to `/`
+4) In `User.js`, read and display logged in user from context (`user` object). Then include this component in `AppLayout.js`+
+5) Handle logout button by calling `logout()` and navigating back to `/`+
 */

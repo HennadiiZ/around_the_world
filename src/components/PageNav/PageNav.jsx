@@ -1,17 +1,21 @@
 // import React from 'react';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
-import User from '../User';
+import { AuthContext } from '../../contexts/FakeAuthContext';
 import styles from './PageNav.module.css';
 
 export default function PageNav() {
+  const { isAuthenticated } = useContext(AuthContext);
+  console.log(isAuthenticated);
+
   return (
     <nav className={styles.nav}>
       <Logo />
       <ul>
-        {/* <li>
+        <li>
           <NavLink to='/'>Home</NavLink>
-        </li> */}
+        </li>
         <li>
           <NavLink to='/pricing'>Pricing</NavLink>
         </li>
@@ -19,9 +23,11 @@ export default function PageNav() {
           <NavLink to='/product'>Product</NavLink>
         </li>
         <li>
-          <NavLink to='/login' className={styles.ctaLink}>
-            login
-          </NavLink>
+          {!isAuthenticated && (
+            <NavLink to='/login' className={styles.ctaLink}>
+              login
+            </NavLink>
+          )}
         </li>
       </ul>
     </nav>
