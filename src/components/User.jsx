@@ -17,14 +17,15 @@ function User() {
   const { user, isAuthenticated, login, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isAuthenticated === false) {
-      navigate('/');
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated === false) {
+  //     navigate('/');
+  //   }
+  // }, [isAuthenticated]);
 
   function handleClick() {
     logout();
+    navigate('/');
   }
 
   return (

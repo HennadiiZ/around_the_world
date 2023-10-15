@@ -13,14 +13,16 @@ export default function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated === true) {
-      navigate('/app');
+    if (isAuthenticated) {
+      navigate('/app', { replace: true });
     }
   }, [isAuthenticated]);
 
   function handleLogin(e) {
     e.preventDefault();
-    login(email, password);
+    if (email && password) {
+      login(email, password);
+    }
   }
 
   return (
