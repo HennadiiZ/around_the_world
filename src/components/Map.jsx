@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import {
   MapContainer,
   TileLayer,
@@ -6,14 +6,14 @@ import {
   Popup,
   useMap,
   useMapEvents,
-} from "react-leaflet";
+} from 'react-leaflet';
 
-import styles from "./Map.module.css";
-import { useEffect, useState } from "react";
-import { useCities } from "../contexts/CitiesContext";
-import { useGeolocation } from "../hooks/useGeolocation";
-import { useUrlPosition } from "../hooks/useUrlPosition";
-import Button from "./Button";
+import styles from './Map.module.css';
+import { useEffect, useState } from 'react';
+import { useCities } from '../contexts/CitiesContext';
+import { useGeolocation } from '../hooks/useGeolocation';
+import { useUrlPosition } from '../hooks/useUrlPosition';
+import Button from './Button';
 
 function Map() {
   const { cities } = useCities();
@@ -43,8 +43,8 @@ function Map() {
   return (
     <div className={styles.mapContainer}>
       {!geolocationPosition && (
-        <Button type="position" onClick={getPosition}>
-          {isLoadingPosition ? "Loading..." : "Use your position"}
+        <Button type='position' onClick={getPosition}>
+          {isLoadingPosition ? 'Loading...' : 'Use your position'}
         </Button>
       )}
 
@@ -56,7 +56,7 @@ function Map() {
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+          url='https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
         />
         {cities.map((city) => (
           <Marker
