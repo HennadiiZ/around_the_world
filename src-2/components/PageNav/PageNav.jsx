@@ -1,7 +1,7 @@
 // import React from 'react';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../components/Logo/Logo';
+import Logo from '../Logo/Logo';
 import { AuthContext } from '../../contexts/FakeAuthContext';
 import styles from './PageNav.module.css';
 
