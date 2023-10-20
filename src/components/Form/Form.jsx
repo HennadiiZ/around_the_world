@@ -1,13 +1,12 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 
 import { useState, useEffect, useContext } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useUrlPosition } from '../../hooks/useUrlPosition';
 import styles from './Form.module.css';
 import Button from '../Button/Button';
 import Message from '../Message/Message';
 import Spinner from '../Spinner/Spinner';
-// import ReactDatePicker from 'react-datepicker';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { CitiesContext } from '../../contexts/CitiesContext';
@@ -27,10 +26,6 @@ function formatDateString(dateString) {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
-    // hour: '2-digit',
-    // minute: '2-digit',
-    // second: '2-digit',
-    // timeZoneName: 'short',
   };
   return date.toLocaleString('en-US', options);
 }
@@ -39,10 +34,6 @@ const BASE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
 
 function Form() {
   const [lat, lng] = useUrlPosition();
-  // const [searchParams, setSearchParams] = useSearchParams(); //--------
-  // const lat = searchParams.get('lat'); //--------
-  // const lng = searchParams.get('lng'); //--------
-
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [cityName, setCityName] = useState('');
   const [country, setCountry] = useState('');
@@ -52,8 +43,6 @@ function Form() {
   const [geocodingErr, setGeocodingErr] = useState('');
   const { createCity, isLoading } = useContext(CitiesContext);
   const navigate = useNavigate();
-
-  // console.log(lat, lng);
 
   useEffect(() => {
     if (!lat && !lng) {
@@ -66,7 +55,6 @@ function Form() {
         setGeocodingErr('');
         const res = await fetch(`${BASE_URL}?latitude=${lat}&longitude=${lng}`);
         const data = await res.json();
-        // console.log('data', data);
 
         if (!data.countryCode) {
           throw new Error("That doesn't seem to be a city.");
@@ -102,13 +90,9 @@ function Form() {
     };
 
     await createCity(newCity);
-    console.log('newCity:', newCity); // newCity: {cityName: 'Carrazeda de Ansiaes', country: 'Portugal', emoji: '🇵🇹', date: Fri Oct 13 2023 12:58:43 GMT-0600 (Mountain Daylight Time), notes: '', …}
+    console.log('newCity:', newCity);
     navigate('/app');
   }
-
-  // if (isLoadingGeocoding || isLoading) {
-  //   return <Spinner />;
-  // }
 
   if (isLoadingGeocoding) {
     return <Spinner />;
@@ -139,17 +123,6 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor='date'>When did you go to {cityName}?</label>
-        {/* <input
-          id='date'
-          onChange={(e) => setDate(e.target.value)}
-          value={date}
-        /> */}
-        {/* <input
-          id='date'
-          onChange={(e) => setDate(e.target.value)}
-          value={formatDateString(date)}
-        /> */}
-        {/* <ReactDatePicker /> */}
         <DatePicker
           id='date'
           selected={date}
@@ -178,7 +151,6 @@ function Form() {
         >
           Back
         </Button>
-        {/* -1 means how many steps back we want to make */}
       </div>
     </form>
   );

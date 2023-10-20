@@ -21,7 +21,6 @@ function App() {
           <Route path='/' element={<Homepage />} />
           <Route path='product' element={<Product />} />
           <Route path='pricing' element={<Pricing />} />
-          {/* {!isAuthenticated && <Route path='login' element={<Login />} />} */}
           <Route path='login' element={<Login />} />
 
           <Route
@@ -38,14 +37,6 @@ function App() {
             <Route path='countries' element={<CountryList />} />
             <Route path='form' element={<Form />} />
           </Route>
-
-          {/* <Route path='app' element={<AppLayout />}>
-            <Route index element={<Navigate replace to='cities' />} />
-            <Route path='cities' element={<CityList />} />
-            <Route path='cities/:id' element={<City />} />
-            <Route path='countries' element={<CountryList />} />
-            <Route path='form' element={<Form />} />
-          </Route> */}
           <Route path='*' element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
@@ -55,9 +46,8 @@ function App() {
 
 export default App;
 
-//2 - this branch is for context
-// npm run dev
 // npm install eslint vite-plugin-eslint eslint-config-react-app --save-dev
+
 // new file .eslintrc.json
 
 // {
@@ -66,14 +56,8 @@ export default App;
 
 // npm i react-router-dom@6
 // npm i json-server
-// npm run server
 // npm i react-leaflet leaflet
+// npm i react-datepicker
 
-// <Link
-// to={`${id}?lat=${position.lat}&lng=${position.lng}`}
-// >
-
-// By adding & between position.lat and lng,
-// you're properly separating the lat and lng parameters,
-// ensuring they are formatted correctly in the URL.
-//
+// npm run dev
+// npm run server

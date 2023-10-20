@@ -7,7 +7,6 @@ import styles from './PageNav.module.css';
 
 export default function PageNav() {
   const { isAuthenticated } = useContext(AuthContext);
-  console.log(isAuthenticated);
 
   return (
     <nav className={styles.nav}>

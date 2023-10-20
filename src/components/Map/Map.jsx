@@ -1,5 +1,4 @@
 import { useSearchParams, useNavigate } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import styles from './Map.module.css';
 import {
   MapContainer,
@@ -12,29 +11,21 @@ import {
 import { useContext, useEffect, useState } from 'react';
 import { CitiesContext } from '../../contexts/CitiesContext';
 import { useGeolocation } from '../../hooks/useGeolocation';
-import { useUrlPosition } from '../../hooks/useUrlPosition';
-
 import Button from '../Button/Button';
-import User from '../User';
 
 export default function Map() {
-  // const navigate = useNavigate();
-
   const { cities } = useContext(CitiesContext);
   const [mapPosition, setMapPosition] = useState([40, 0]);
 
   const {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
-    // error,
     getPosition,
   } = useGeolocation();
 
-  const [searchParams, setSearchParams] = useSearchParams(); //--------
-  const lat = searchParams.get('lat'); //--------
-  const lng = searchParams.get('lng'); //--------
-
-  // const [lat, lng] = useUrlPosition();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const lat = searchParams.get('lat');
+  const lng = searchParams.get('lng');
 
   useEffect(() => {
     if (lat && lng) {
@@ -48,23 +39,13 @@ export default function Map() {
     }
   }, [geolocationPosition]);
 
-  // console.log('lat', lat);
-  // console.log('lng', lng);
-
   return (
     <div className={styles.mapContainer}>
-      {/* <User /> */}
       {!geolocationPosition && (
         <Button type='position' onClick={getPosition}>
           {isLoadingPosition ? 'Loading...' : 'Use your position'}
         </Button>
       )}
-      {/* <MapContainer
-        className={styles.map}
-        center={mapPosition}
-        zoom={6}
-        scrollWheelZoom={true}
-      > */}
       <MapContainer
         className={styles.map}
         center={mapPosition}
@@ -76,9 +57,8 @@ export default function Map() {
           url='https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
         />
         {cities.map((city) => (
-          // <Marker position={city.position} key={city.id}>
           <Marker
-            position={[city.position.lat, city.position.lng]}
+            position={[city?.position?.lat, city?.position?.lng]}
             key={city.id}
           >
             <Popup>
@@ -107,9 +87,6 @@ function DetectClick() {
 
   useMapEvents({
     click: (e) => {
-      // console.log(e);
-      // console.log(e.latlng.lat);
-      // navigate('form');
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
